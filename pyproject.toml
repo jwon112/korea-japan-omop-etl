@@ -1,0 +1,26 @@
+[build-system]
+requires = ["setuptools>=69"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "korea-japan-omop-etl"
+version = "0.1.1"
+description = "Python-orchestrated SQL Server ETL for Korea NHIS-NSC and Japan JMDC OMOP CDM"
+readme = "README.md"
+requires-python = ">=3.11"
+license = {file = "LICENSE"}
+dependencies = [
+  "pyodbc>=5.1,<6",
+]
+
+[project.scripts]
+omop-etl-korea = "omop_etl.korea:main"
+omop-etl-japan = "omop_etl.japan:main"
+omop-etl-qa = "omop_etl.qa:main"
+omop-etl-package-check = "omop_etl.package_check:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+omop_etl = ["sql/**/*.sql"]
